@@ -1,0 +1,1 @@
+import styels from './Register.module.scss'
