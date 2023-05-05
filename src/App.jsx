@@ -1,11 +1,8 @@
 import styles from "./App.module.scss";
+import Main from "./components/main/Main";
 
 function App() {
-  return (
-    <div>
-      <h1>安安</h1>
-    </div>
-  );
+  return <Main />;
 }
 
 export default App;

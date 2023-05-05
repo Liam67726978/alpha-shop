@@ -1,0 +1,33 @@
+.controlWrapper {
+  border-top: 1px solid #e6e6eb;
+  margin-top: 48px;
+  height: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  button {
+    width: 174px;
+    height: 46px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .prevBtn {
+    background-color: #fff;
+    text-align: start;
+    .prevArrow {
+      margin-right: 11px;
+    }
+  }
+  .nextBtn {
+    background-color: #f67599;
+    color: #fff;
+    .nextArrow {
+      path {
+        fill: #fff;
+      }
+      margin-left: 11px;
+      transform: rotate(180deg);
+    }
+  }
+}
