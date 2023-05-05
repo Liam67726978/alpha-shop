@@ -3,7 +3,7 @@
 1. 將專案 clone 本地
 
 ```bash
-git clone https://github.com/000-987/alpha-shop.git
+git clone https://github.com/Liam67726978/alpha-shop.git
 ```
 
 2. 進入項目資料夾輸入命令 npm i 或是 npm install
