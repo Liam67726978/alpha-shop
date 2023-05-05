@@ -5,8 +5,8 @@ function Form() {
   return (
     <div className={styles.formWrapper}>
       <AddressPhase />
-      {/* <ShippingPhase /> */}
-      {/* <CreditCardPhase /> */}
+      <ShippingPhase />
+      <CreditCardPhase />
     </div>
   );
 }
