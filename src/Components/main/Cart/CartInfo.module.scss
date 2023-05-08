@@ -1,0 +1,17 @@
+.cartInfo {
+  height: 37px;
+  border-top: 1px solid #f0f0f5;
+  margin-bottom: 32px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  .text,
+  .price {
+    font-size: 1.4rem;
+  }
+  .price {
+    font-weight: bold;
+  }
+}
