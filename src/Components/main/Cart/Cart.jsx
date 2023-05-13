@@ -18,6 +18,13 @@ function Cart() {
   function handleDecrease(id) {
     updateData((draft) => {
       const product = draft.find((p) => p.id === id);
+      // 刪除數量為0的商品
+      for (let i = 0; i < draft.length; i++) {
+        draft[i].quantity === 1 && draft.splice(i, 1);
+      }
+      draft.filter((product) => product.quantity === 0);
+
+      // 大於0正常渲染
       if (product && product.quantity > 0) {
         product.quantity -= 1;
       }
