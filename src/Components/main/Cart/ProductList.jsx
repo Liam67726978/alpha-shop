@@ -1,18 +1,25 @@
+import classNames from "classnames";
 import styles from "./ProductList.module.scss";
-import data from "./data";
 import Icons from "./icons";
 
-function ProductList() {
+function ProductList({ data, onIncrease, onDecrease }) {
   return (
     <ul className={styles.productList}>
       {data.map((product) => (
-        <Product key={product.id} product={product} />
+        <Product
+          key={product.id}
+          product={product}
+          onIncrease={onIncrease}
+          onDecrease={onDecrease}
+        />
       ))}
     </ul>
   );
 }
 
-function Product({ product }) {
+function Product({ product, onIncrease, onDecrease }) {
+  const price = product.price * product.quantity;
+
   return (
     <li className={styles.productContainer}>
       <img className={styles.imgContainer} src={product.img} alt="" />
@@ -21,12 +28,18 @@ function Product({ product }) {
         <div className={styles.productName}>{product.name}</div>
         <div className={styles.productControlContainer}>
           <div className={styles.productControl}>
-            <Icons.Minus className={`${styles.productAction} minus`} />
+            <Icons.Minus
+              className={classNames(styles.productAction)}
+              onClick={() => onDecrease(product.id)}
+            />
             <span className={styles.productCount}>{product.quantity}</span>
-            <Icons.Plus className={`${styles.productAction} plus`} />
+            <Icons.Plus
+              className={classNames(styles.productAction)}
+              onClick={() => onIncrease(product.id)}
+            />
           </div>
         </div>
-        <div className={styles.productPrice}>${product.price}</div>
+        <div className={styles.productPrice}>${price}</div>
       </div>
     </li>
   );
