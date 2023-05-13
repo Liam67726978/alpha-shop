@@ -1,6 +1,38 @@
 import styles from "./Form.module.scss";
 import Icons from "./Icons";
 
+const optionData = [
+  { city: "基隆市", value: "KLU" },
+  { city: "新北市", value: "TPH" },
+  { city: "臺北市", value: "TPE" },
+  { city: "桃園市", value: "TYC" },
+  { city: "新竹縣", value: "HSH" },
+  { city: "新竹市", value: "HSC" },
+  { city: "苗栗市", value: "MAC" },
+  { city: "苗栗縣", value: "MAL" },
+  { city: "臺中市", value: "TXG" },
+  { city: "彰化縣", value: "CWH" },
+  { city: "彰化市", value: "CWS" },
+  { city: "南投市", value: "NTC" },
+  { city: "南投縣", value: "NTO" },
+  { city: "雲林縣", value: "YLH" },
+  { city: "嘉義縣", value: "CHY" },
+  { city: "嘉義市", value: "CYI" },
+  { city: "臺南市", value: "TNN" },
+  { city: "高雄市", value: "KHH" },
+  { city: "屏東縣", value: "IUH" },
+  { city: "屏東市", value: "PTS" },
+  { city: "宜蘭縣", value: "ILN" },
+  { city: "宜蘭市", value: "ILC" },
+  { city: "花蓮縣", value: "HWA" },
+  { city: "花蓮市", value: "HWC" },
+  { city: "臺東市", value: "TTC" },
+  { city: "臺東縣", value: "TTT" },
+  { city: "澎湖縣", value: "PEH" },
+  { city: "金門縣", value: "KMN" },
+  { city: "連江縣", value: "LNN" },
+];
+
 function Form({ step }) {
   return <div className={styles.formWrapper}>{renderForm(step)}</div>;
 }
@@ -21,7 +53,6 @@ function AddressPhase() {
           <span className={styles.selectWrapper}>
             <Icons.Triangle className={styles.triangleIcon} />
             <select name="salutation" id="salutation">
-              <Icons.Triangle />
               <option value="male">先生</option>
               <option value="female">小姐</option>
             </select>
@@ -43,39 +74,17 @@ function AddressPhase() {
           <label htmlFor="city">縣市</label>
           <span className={styles.selectWrapper}>
             <Icons.Triangle className={styles.triangleIcon} />
-            <select name="city" id="city" required>
-              <option value="" disabled selected hidden>
+            <select name="city" id="city" defaultValue="" required>
+              <option value="" disabled hidden>
                 請選擇縣市
               </option>
-              <option value="KLU">基隆市</option>
-              <option value="TPH">新北市</option>
-              <option value="TPE">臺北市</option>
-              <option value="TYC">桃園市</option>
-              <option value="HSH">新竹縣</option>
-              <option value="HSC">新竹市</option>
-              <option value="MAC">苗栗市</option>
-              <option value="MAL">苗栗縣</option>
-              <option value="TXG">臺中市</option>
-              <option value="CWH">彰化縣</option>
-              <option value="CWS">彰化市</option>
-              <option value="NTC">南投市</option>
-              <option value="NTO">南投縣</option>
-              <option value="YLH">雲林縣</option>
-              <option value="CHY">嘉義縣</option>
-              <option value="CYI">嘉義市</option>
-              <option value="TNN">臺南市</option>
-              <option value="KHH">高雄市</option>
-              <option value="IUH">屏東縣</option>
-              <option value="PTS">屏東市</option>
-              <option value="ILN">宜蘭縣</option>
-              <option value="ILC">宜蘭市</option>
-              <option value="HWA">花蓮縣</option>
-              <option value="HWC">花蓮市</option>
-              <option value="TTC">臺東市</option>
-              <option value="TTT">臺東縣</option>
-              <option value="PEH">澎湖縣</option>
-              <option value="KMN">金門縣</option>
-              <option value="LNN">連江縣</option>
+              {optionData.map((city) => {
+                return (
+                  <option key={city.value} value={city.value}>
+                    {city.city}
+                  </option>
+                );
+              })}
             </select>
           </span>
         </div>
