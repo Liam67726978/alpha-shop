@@ -1,11 +1,11 @@
 .controlWrapper {
   border-top: 1px solid #e6e6eb;
-  margin-top: 48px;
   height: 72px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   button {
+    font-size: 1.4rem;
     width: 174px;
     height: 46px;
     border: none;
@@ -19,7 +19,8 @@
       margin-right: 11px;
     }
   }
-  .nextBtn {
+  .nextBtn,
+  .confirmOrderButton {
     background-color: #f67599;
     color: #fff;
     .nextArrow {
@@ -30,4 +31,8 @@
       transform: rotate(180deg);
     }
   }
+}
+
+.hidden {
+  visibility: hidden;
 }

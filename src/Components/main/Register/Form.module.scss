@@ -1,5 +1,7 @@
-Form {
+.formWrapper {
   user-select: none;
+  min-height: 285px;
+  margin-bottom: 48px;
   .formTitle {
     font-size: 2.4rem;
     margin-top: 0;
@@ -7,11 +9,10 @@ Form {
   }
   .formBody {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    column-gap: 30px;
+    grid: repeat(3, 1fr) / repeat(12, 1fr);
+    gap: 24px 30px;
     .inputGroup {
       width: 100%;
-      margin-bottom: 24px;
       label {
         display: block;
         margin-bottom: 8px;
@@ -44,12 +45,14 @@ Form {
           position: absolute;
           top: 0%;
           right: 18px;
+          z-index: -999;
         }
         select {
           cursor: pointer;
           appearance: none;
           padding-top: 3px;
           padding-inline: 18px;
+          background-color: transparent;
           &:invalid {
             color: #999;
           }

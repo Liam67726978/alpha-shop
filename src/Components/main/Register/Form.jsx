@@ -1,14 +1,14 @@
 import styles from "./Form.module.scss";
 import Icons from "./Icons";
 
-function Form() {
-  return (
-    <div className={styles.formWrapper}>
-      <AddressPhase />
-      {/* <ShippingPhase /> */}
-      {/* <CreditCardPhase /> */}
-    </div>
-  );
+function Form({ step }) {
+  return <div className={styles.formWrapper}>{renderForm(step)}</div>;
+}
+
+function renderForm(step) {
+  if (step === 1) return <AddressPhase />;
+  else if (step === 2) return <ShippingPhase />;
+  else return <CreditCardPhase />;
 }
 
 function AddressPhase() {
