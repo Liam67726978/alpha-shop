@@ -9,6 +9,21 @@ function Cart() {
   const cart = useContext(CartContext);
   const [data, updateData] = useImmer(cart);
 
+  // 計算總金額 total
+  let total = 0;
+  data.forEach((product) => {
+    total += product.price * product.quantity;
+  });
+  // 設定 total 格式
+  total = total.toLocaleString("zh-TW", {
+    style: "currency",
+    currency: "TWD",
+    currencyDisplay: "narrowSymbol",
+    maximumFractionDigits: 0,
+    useGrouping: true,
+  });
+
+  // 商品數量增減功能
   function handleIncrease(id) {
     updateData((draft) => {
       const product = draft.find((p) => p.id === id);
@@ -34,7 +49,9 @@ function Cart() {
   }
 
   return (
-    <CartContext.Provider value={{ data, handleIncrease, handleDecrease }}>
+    <CartContext.Provider
+      value={{ data, total, handleIncrease, handleDecrease }}
+    >
       <section className={styles.container}>
         <Title />
         <ProductList />
