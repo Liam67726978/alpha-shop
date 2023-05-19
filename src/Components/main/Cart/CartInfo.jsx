@@ -1,6 +1,9 @@
+import CartContext from "./CartContext";
+import { useContext } from "react";
 import styles from "./CartInfo.module.scss";
 
-function CartInfo({ data }) {
+function CartInfo() {
+  const { data } = useContext(CartContext);
   // 計算total
   let total = 0;
   data.forEach((product) => {

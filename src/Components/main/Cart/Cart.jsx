@@ -1,11 +1,13 @@
-import styles from "./Cart.module.scss";
+import CartContext from "./CartContext";
+import { useContext } from "react";
 import { useImmer } from "use-immer";
-import initialData from "./data";
+import styles from "./Cart.module.scss";
 import ProductList from "./ProductList";
 import CartInfo from "./CartInfo";
 
 function Cart() {
-  const [data, updateData] = useImmer(initialData);
+  const cart = useContext(CartContext);
+  const [data, updateData] = useImmer(cart);
 
   function handleIncrease(id) {
     updateData((draft) => {
@@ -32,15 +34,13 @@ function Cart() {
   }
 
   return (
-    <section className={styles.container}>
-      <Title />
-      <ProductList
-        data={data}
-        onIncrease={handleIncrease}
-        onDecrease={handleDecrease}
-      />
-      <CartInfo data={data} />
-    </section>
+    <CartContext.Provider value={{ data, handleIncrease, handleDecrease }}>
+      <section className={styles.container}>
+        <Title />
+        <ProductList />
+        <CartInfo />
+      </section>
+    </CartContext.Provider>
   );
 }
 

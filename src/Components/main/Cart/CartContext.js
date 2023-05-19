@@ -1,4 +1,6 @@
-const data = [
+import { createContext } from "react";
+
+const CartContext = createContext([
   {
     id: "1",
     name: "貓咪罐罐",
@@ -13,6 +15,6 @@ const data = [
     price: 200,
     quantity: 1,
   },
-];
+]);
 
-export default data;
+export default CartContext;
