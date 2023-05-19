@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import RegisterContext from "./RegisterContext";
 import styles from "./Form.module.scss";
 import Icons from "./Icons";
 
@@ -122,13 +124,44 @@ function ShippingPhase() {
 }
 
 function CreditCardPhase() {
+  const { registerData, updateRegisterData } = useContext(RegisterContext);
+  // 更新 name
+  function handleChangeName(e) {
+    updateRegisterData((draft) => {
+      draft.name = e.target.value;
+    });
+  }
+  // 更新 number
+  function handleChangeNumber(e) {
+    updateRegisterData((draft) => {
+      draft.number = e.target.value;
+    });
+  }
+  // 更新 date
+  function handleChangeDate(e) {
+    updateRegisterData((draft) => {
+      draft.date = e.target.value;
+    });
+  }
+  // 更新 cvc
+  function handleChangeCvc(e) {
+    updateRegisterData((draft) => {
+      draft.cvc = e.target.value;
+    });
+  }
+
   return (
     <form className={styles.creditCardForm}>
       <h3 className={styles.formTitle}>付款資訊</h3>
       <div className={styles.formBody}>
         <div className={styles.inputGroup}>
           <label htmlFor="name">持卡人姓名</label>
-          <input type="text" placeholder="John Doe" />
+          <input
+            type="text"
+            placeholder="John Doe"
+            value={registerData.name}
+            onChange={handleChangeName}
+          />
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="cardNumber">卡號</label>
@@ -136,15 +169,28 @@ function CreditCardPhase() {
             id="cardNumber"
             type="text"
             placeholder="1111 2222 3333 4444"
+            value={registerData.number}
+            onChange={handleChangeNumber}
           />
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="expiryDate">有效期限</label>
-          <input id="expiryDate" type="text" placeholder="MM/YY" />
+          <input
+            id="expiryDate"
+            type="text"
+            placeholder="MM/YY"
+            value={registerData.date}
+            onChange={handleChangeDate}
+          />
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="securityCode">CVC / CCV</label>
-          <input type="securityCode" placeholder="123" />
+          <input
+            type="securityCode"
+            placeholder="123"
+            value={registerData.cvc}
+            onChange={handleChangeCvc}
+          />
         </div>
       </div>
     </form>

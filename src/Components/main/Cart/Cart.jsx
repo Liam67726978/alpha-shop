@@ -1,47 +1,14 @@
-import CartContext from "./CartContext";
-import { useContext } from "react";
 import styles from "./Cart.module.scss";
 import ProductList from "./ProductList";
 import CartInfo from "./CartInfo";
 
 function Cart() {
-  const { data, total, updateData } = useContext(CartContext);
-
-  // 商品數量增減功能
-  function handleIncrease(id) {
-    updateData((draft) => {
-      const product = draft.find((p) => p.id === id);
-      if (product) {
-        product.quantity += 1;
-      }
-    });
-  }
-  function handleDecrease(id) {
-    updateData((draft) => {
-      const product = draft.find((p) => p.id === id);
-      // 刪除數量為0的商品
-      for (let i = 0; i < draft.length; i++) {
-        draft[i].quantity === 1 && draft.splice(i, 1);
-      }
-      draft.filter((product) => product.quantity === 0);
-
-      // 大於0正常渲染
-      if (product && product.quantity > 0) {
-        product.quantity -= 1;
-      }
-    });
-  }
-
   return (
-    <CartContext.Provider
-      value={{ data, total, handleIncrease, handleDecrease }}
-    >
-      <section className={styles.container}>
-        <Title />
-        <ProductList />
-        <CartInfo />
-      </section>
-    </CartContext.Provider>
+    <section className={styles.container}>
+      <Title />
+      <ProductList />
+      <CartInfo />
+    </section>
   );
 }
 

@@ -5,18 +5,47 @@ import styles from "./ProductList.module.scss";
 import Icons from "./icons";
 
 function ProductList() {
-  const { data } = useContext(CartContext);
+  const { data, updateData } = useContext(CartContext);
+
+  function handleIncrease(id) {
+    updateData((draft) => {
+      const product = draft.find((p) => p.id === id);
+      if (product) {
+        product.quantity += 1;
+      }
+    });
+  }
+
+  function handleDecrease(id) {
+    updateData((draft) => {
+      const product = draft.find((p) => p.id === id);
+      // 刪除數量為0的商品
+      for (let i = 0; i < draft.length; i++) {
+        draft[i].quantity === 1 && draft.splice(i, 1);
+      }
+      draft.filter((product) => product.quantity === 0);
+
+      // 大於0正常渲染
+      if (product && product.quantity > 0) {
+        product.quantity -= 1;
+      }
+    });
+  }
   return (
     <ul className={styles.productList}>
       {data.map((product) => (
-        <Product key={product.id} product={product} />
+        <Product
+          key={product.id}
+          product={product}
+          handleIncrease={handleIncrease}
+          handleDecrease={handleDecrease}
+        />
       ))}
     </ul>
   );
 }
 
-function Product({ product }) {
-  const { handleIncrease, handleDecrease } = useContext(CartContext);
+function Product({ product, handleIncrease, handleDecrease }) {
   const price = product.price * product.quantity;
 
   return (
